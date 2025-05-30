@@ -1,0 +1,25 @@
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/FirstClub
+
+
+apiLogger:
+  slowExecutionTime: ${SLOW_API_EXECUTION_TIME:4000}
+
+
+logging:
+  file:
+    path: logs/data-correction
+    name: ${logging.file.path}/data-correction.log
+  pattern:
+    rolling-file-name: ${LOG_FILE}.%d{yyyy-MM-dd}.%i.gz
+    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(${PID:- }){magenta} %clr(--){faint} %X{correlationId} userId:%X{userId} %clr(--){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %M %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}'
+    file: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(--){faint} %X{correlationId} userId:%X{userId} %clr(--){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %M %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}'
+  logback:
+    rollingpolicy:
+      max-history: 10
+      max-file-size: 10MB
+      total-size-cap: 1GB
+      file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}.%i.gz
